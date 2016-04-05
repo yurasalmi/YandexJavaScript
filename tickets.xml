@@ -25,6 +25,9 @@
 		<gate>22</gate>
 		<seat>7B</seat>
 		<baggage>will be automatically transferred from your last leg</baggage></ticket>
-	<ticket></ticket>
-	<ticket></ticket>
+	<ticket><transport>airport bus</transport><transport>airport bus</transport></ticket>
+	<ticket>
+		
+		<something>123123</something>
+		<number>fdfdf</number></ticket>
 </deck>
