@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<div id="description"></div>
+
+<table id="deck" border=2 cellpadding=2>
+</table>
+
+<script>
+	
+	var tickets = loadTickets("tickets.json");
+	var way = new Array();
+	var table = document.getElementById("deck");
+	
+	tickets.forEach(function(ticket, i, tickets){
+		
+		var sentence = "Take " + ticket.transport;
+    
+		if( typeof ticket.number != 'undefined' )
+			sentence = sentence + " " + ticket.number;
+    
+		sentence = sentence + " from " + ticket.departure + 
+			" to " + ticket.arrival + ".";
+    
+		if( typeof ticket.seat != 'undefined' )
+			sentence = sentence + " Seat " + ticket.seat + ".";
+			
+		if( typeof ticket.gate != 'undefined' )
+			sentence = sentence + " Gate " + ticket.gate + ".";
+			
+		if( typeof ticket.baggage != 'undefined' )
+			sentence = sentence + " Baggage " + ticket.baggage + ".";
+			
+		tickets[i].sentence = i + ". " + sentence;
+		
+		var newRow = table.insertRow(i);
+		var newCell = newRow.insertCell(0);
+		newCell.innerHTML = "<p>" + tickets[i].sentence + "</p>";
+		
+	});
+	
+	way[0] = tickets[0];
+	
+	var start;
+	var end;
+	
+	for(var i=0; i < tickets.length; i++){
+		tickets.forEach(function(ticket, j, tickets){
+		
+			start = way[0].departure;
+			end = way[way.length-1].arrival;
+		
+			if(end == ticket.departure)
+			{
+				way.push(ticket);
+			}
+			if(start == ticket.arrival)
+			{
+				way.unshift(ticket);
+			}
+		}
+	)};
+	
+	var description = "<p>Your jorney starts in the beautiful place of " + way[0].departure + " and ends in the  magnicifent " + way[way.length-1].arrival + ". <i>Bon voyage!</i></p><p>Complete description of your jorney is below:</p>";
+	
+	for(var i=0; i < way.length; i++)
+		description = description + "<p>" + way[i].sentence + "</p>";
+	
+	var div_description = document.getElementById("description");
+	div_description.innerHTML = description;
+  
+    function loadTickets(filename) {
+	
+		var xhr = new XMLHttpRequest();
+		var tickets = new Array();
+		
+		xhr.open('GET', filename, false);
+		xhr.send();
+
+		if (xhr.status != 200) {
+			//обработать ошибку
+			alert("Ошибка " + xhr.status + ": " + xhr.statusText);
+		} else {
+			var json_string = xhr.responseText;
+			tickets = JSON.parse(json_string);
+		}
+		
+		return tickets;
+    }
+ </script>
+
+</body>
+
+</html>

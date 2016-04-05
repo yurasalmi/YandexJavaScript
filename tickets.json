@@ -1,0 +1,58 @@
+[
+	{
+		"transport": "Nils Holgersson`s wild geeses",
+		"departure": "dark side of the Moon",
+		"arrival": "Malmö International airport"
+	},
+	{
+		"transport": "flight",
+		"number": "SK455",
+		"departure": "Stockholm",
+		"arrival": "New York JFK",
+		"seat": "7B",
+		"gate": "22",
+		"baggage": "will be automatically transferred from your last leg"
+	},
+	{
+		"transport": "airport bus",
+		"departure": "Barcelona",
+		"arrival": "Gerona Airport"
+	},
+	{
+		"transport": "train",
+		"number": "78A",
+		"departure": "Madrid",
+		"arrival": "Barcelona",
+		"seat": "45B"
+	},
+	{
+		"transport": "spaceship \"Soyuz\"",
+		"departure": "Kapustin Yar",
+		"arrival": "dark side of the Moon"
+	},
+	{
+		"transport": "flight",
+		"number": "SK455",
+		"departure": "Gerona Airport",
+		"arrival": "Stockholm",
+		"seat": "3A",
+		"gate": "45B",
+		"baggage": "drop at ticket counter 344"
+	},
+	{
+		"transport": "Typhoon class submarine",
+		"number": "\"Red October\"",
+		"departure": "Norfolk NAVY base",
+		"arrival": "Murmansk"
+	},
+	{
+		"transport": "train",
+		"departure": "New York JFK",
+		"arrival": "Norfolk NAVY base"
+	},
+	{
+		"transport": "so-called \"bombila\" on \"damn kopeyka\"",
+		"departure": "Murmansk",
+		"arrival": "Kapustin Yar"
+	}
+]
