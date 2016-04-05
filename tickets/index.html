@@ -8,26 +8,39 @@
 <body>
 
 <div id="description"></div>
-
-<table id="deck" border=2 cellpadding=2>
-</table>
+<table id="deck" border=2 cellpadding=2></table>
 
 <script>
+
+	//Информация о билетах хранится в файле tickets.json
+	//и представлена в виде:
+	//[
+	//	{
+	//		"transport": "airport bus",
+	//		"departure": "Barcelona",
+	//		"arrival": "Gerona Airport"
+	//		...
+	//	},
+	//	...
+	//]
 	
 	var tickets = loadTickets("tickets.json");
-	var way = new Array();
+	
 	var table = document.getElementById("deck");
 	
 	tickets.forEach(function(ticket, i, tickets){
 		
-		var sentence = "Take " + ticket.transport;
+		var sentence = "Take " + ticket.transport; //Текстовая информация о билете.
     
 		if( typeof ticket.number != 'undefined' )
 			sentence = sentence + " " + ticket.number;
     
 		sentence = sentence + " from " + ticket.departure + 
 			" to " + ticket.arrival + ".";
-    
+		
+		//Если есть ещё и информация о месте, воротах аэропорта и багаже, 
+		//то написать и её.
+		
 		if( typeof ticket.seat != 'undefined' )
 			sentence = sentence + " Seat " + ticket.seat + ".";
 			
@@ -37,6 +50,8 @@
 		if( typeof ticket.baggage != 'undefined' )
 			sentence = sentence + " Baggage " + ticket.baggage + ".";
 			
+		//Каждому билету присваивается его текстовая информация - несколько предложений
+		//на английском языке.
 		tickets[i].sentence = i + ". " + sentence;
 		
 		var newRow = table.insertRow(i);
@@ -44,6 +59,10 @@
 		newCell.innerHTML = "<p>" + tickets[i].sentence + "</p>";
 		
 	});
+	
+	//Сортировка билетов и составление пути
+	
+	var way = new Array();
 	
 	way[0] = tickets[0];
 	
@@ -67,6 +86,8 @@
 		}
 	)};
 	
+	//Текстовое описание путешествия
+	
 	var description = "<p>Your jorney starts in the beautiful place of " + way[0].departure + " and ends in the  magnicifent " + way[way.length-1].arrival + ". <i>Bon voyage!</i></p><p>Complete description of your jorney is below:</p>";
 	
 	for(var i=0; i < way.length; i++)
@@ -75,6 +96,7 @@
 	var div_description = document.getElementById("description");
 	div_description.innerHTML = description;
   
+	//Загрузка файла с неотсортированными билетами.
     function loadTickets(filename) {
 	
 		var xhr = new XMLHttpRequest();
