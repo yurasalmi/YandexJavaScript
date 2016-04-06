@@ -8,7 +8,6 @@
 <body>
 
 <div id="description"></div>
-<p>Unsorted list of tickets:</p>
 <table id="deck" border=2 cellpadding=2></table>
 
 <script>
